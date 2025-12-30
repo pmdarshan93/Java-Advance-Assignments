@@ -1,0 +1,41 @@
+package vault;
+
+public class SQLQuery {
+	public final String login="select id from userList where userName =? and password=?";
+	public final String userNameExist="select * from userList where userName= ?";
+	public final String addUser="insert into userList (name,userName,password,role,createdDate) values (?,?,?,?,?)";
+	public final String addCustomer="insert into customerList (id,n,e,d,isLocked) values (?,?,?,?,?)";
+	public final String addAudit="insert into auditList (actionId,ownerId,dateOfAction) values (?,?,?)";
+	public final String getRole="select role from userList where id=?";
+	public final String storeUser="select * from userList where id=?";
+	public final String storeAllUsers="select * from userList";
+	public final String viewAllUser="Select * from userList;";
+	public final String viewAuditList="select * from auditList where auditId>((select count(*) from auditList)-20)";
+	public final String viewAuditList2="select * from auditList";
+	public final String countOfAuditList="select count(*) as count from auditList";
+	public final String auditOfUser="select * from auditList where ownerId=?";
+	public final String auditOfAction="select * from auditList where action=?";
+	public final String checkLockStatus="select isLocked from customerList where id=?";
+	public final String unlock="update customerList set isLocked=0 where id=?";
+	public final String storeCustomer="select * from customerList where id=?";
+	public final String lock="update customerList set isLocked =1 where id= ?";
+	public final String addApplication="insert into application (applicationType,userName,description,encryptedPassword,ownerId,isShared,createdDate) values (?,?,?,?,?,?,?)";
+	public final String storeAllApplication="select * from application where ownerId=?";
+	public final String storeShareList="select customerId from shareList where appId=?";
+	public final String deleteApplication="delete from application where applicationType=? and userName=? and encryptedPassword=? and ownerId=? and createdDate=?";
+	public final String addDelete="insert into trash (applicationType,userName,description,encryptedPassword,ownerId,isShared,createdDate,deletedDate,Reason) values(?,?,?,?,?,?,?,?,?)";
+	public final String updateName="update application set applicationType=? where appId=?";
+	public final String updateApplicationUserName="update application set userName=? where appId=?";
+	public final String updatePassword="update application set encryptedPassword=? where appId=?";
+	public final String getAppId="SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'Vault'  AND TABLE_NAME = 'application'";
+	public final String share="insert into shareList values (?,?)";
+	public final String shareStatus="update application set isShared='Y' where appId=?";
+	public final String sharedWithMe="select appId from shareList where customerId=?";
+	public final String getApplicationUsingAppId="select * from application where appId=?";
+	public final String trash="select * from trash where ownerId=?";
+	public final String deletePermanently="delete from trash where appId=?";
+	public final String restore="select * from trash where appId=?";
+	public final String updateUsername="update userList set name=? where id=?";
+	public final String updateUserPassword="update userList set password=? where id=?";
+	public final String getUserName="select username from userList where id=?";
+}
